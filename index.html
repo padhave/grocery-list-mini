@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grocery List Mini</title><style>
+*{box-sizing:border-box}body{font:16px/1.5 system-ui,sans-serif;max-width:760px;margin:3rem auto;padding:0 1rem;color:#203040;background:#f5f8fc}
+main{background:white;padding:2rem;border-radius:14px;box-shadow:0 8px 30px #17324d18}input,button{font:inherit;padding:.45rem .6rem;margin:.3rem}button{cursor:pointer}
+.card,.timer{font-size:1.5rem;padding:1rem;background:#eef5ff;border-radius:8px}.palette{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.swatch{width:110px;height:110px;border-radius:8px;display:grid;place-items:end center;padding:.4rem;color:white;text-shadow:0 1px 3px #000}
+</style></head><body><main><h1>Grocery List Mini</h1><p>Add and remove grocery items saved in local browser storage.</p><form id="f"><input id="item" required placeholder="Grocery item"><button>Add</button></form><ul id="list"></ul></main><script>const k="groceries",f=document.querySelector("#f"),l=document.querySelector("#list");let a=JSON.parse(localStorage.getItem(k)||"[]");function draw(){l.replaceChildren();a.forEach((x,i)=>{const li=document.createElement("li"),b=document.createElement("button");li.textContent=x;b.textContent="Remove";b.onclick=()=>{a.splice(i,1);draw()};li.append(" ",b);l.append(li)});localStorage.setItem(k,JSON.stringify(a))}f.onsubmit=e=>{e.preventDefault();a.push(item.value.trim());item.value="";draw()};draw();</script></body></html>
